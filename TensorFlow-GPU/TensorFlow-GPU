@@ -1,0 +1,54 @@
+Create a Python "virtual environment" for TensorFlow using conda:
+
+You should set up an environment for TensorFlow separate from your base Anaconda environment.
+This keeps your base clean and will give TensorFlow a space for all of it's dependencies. 
+It is in general good practice to keep separate environments for projects especially when they have special package dependencies.
+
+$ conda create --name tf-gpu
+
+I named the environment 'tf-gpu' but you can use any name you want.
+
+Now activate the environment, (I'll show my full terminal prompt and output instead of just the commands)
+
+$ source activate tf-gpu
+
+My terminal will appear as:
+
+(tf-gpu)$
+
+Install TensorFlow from the Anaconda Cloud Repositories
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+The TensorFlow documentation is in general very good but the install documentation does not present a very good way to get a setup working on a workstation.
+
+    Do not follow the install documentation from the TensorFlow site! If you do you will have a painful time getting things working and you will have a nearly impossible to maintain install setup.
+
+    There is no good reason to do an (old) CUDA install and a pip install when you are using Anaconda Python. There is an up-to-date official Anaconda package for TensorFlow with GPU acceleration that includes all of the needed CUDA dependencies and it is well optimized for performance.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+(tf-gpu)$ conda install tensorflow-gpu
+
+
+Create a Jupyter Notebook Kernel for the TensorFlow Environment
+
+You can work with an editor and the command line and you often want to do that, but, Jupyter notebooks are great for doing machine learning development work. In order to get Jupyter notebook to work the way you want with this new TensorFlow environment you will need to add a "kernel" for it.
+
+With your tf-gpu environment activated do,
+
+(tf-gpu)$ conda install ipykernel
+
+them do:
+(tf-gpu)$ python -m ipykernel install --user --name tf-gpu --display-name "TensorFlow-GPU"
+
+Install Keras
+
+With the tf-gpu environment activated do,
+
+(tf-gpu)$ conda install keras
+
+and launch jupyter
+(tf-gpu)$ jupyter notebook
+
+thats all folks!!
+
